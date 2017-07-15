@@ -2,7 +2,7 @@ import random
 import string
 from django.db import transaction
 from django.shortcuts import render, redirect
-import haikunator
+from haikunator import Haikunator
 from .models import Room
 
 def about(request):
@@ -12,6 +12,7 @@ def new_room(request):
     """
     Randomly create a new room, and redirect to it.
     """
+    haikunator = Haikunator()
     new_room = None
     while not new_room:
         with transaction.atomic():

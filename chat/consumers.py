@@ -9,6 +9,9 @@ log = logging.getLogger(__name__)
 
 @channel_session
 def ws_connect(message):
+    # Need to explicitly accept WebSocket connections if you override connect
+    message.reply_channel.send({"accept": True})
+
     # Extract the room from the message. This expects message.path to be of the
     # form /chat/{label}/, and finds a Room if the message path is applicable,
     # and if the Room exists. Otherwise, bails (meaning this is a some othersort
